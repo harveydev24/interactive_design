@@ -66,7 +66,7 @@ function animate() {
   if (!isAccelerated) {
     ctx.fillStyle = `rgba(0,10,32,0.1)`;
   } else {
-    ctx.fillStyle = `rgba(0,10,32,0.01)`;
+    ctx.fillStyle = `rgba(0,10,32,0.05)`;
   }
   ctx.fillRect(0, 0, innerWidth, innerHeight);
 
