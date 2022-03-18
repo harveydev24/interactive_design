@@ -3,18 +3,14 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 let particleArray = [];
-var isMouseDown = false;
+var isAccelerated = false;
 
-window.addEventListener("mousedown", onMouse, false);
-window.addEventListener("mouseup", onMouse, false);
-window.addEventListener("touchstart", onTouch, false);
+window.addEventListener("mousedown", handleIsAccelerated, false);
+window.addEventListener("mouseup", handleIsAccelerated, false);
+window.addEventListener("touchstart", handleIsAccelerated, false);
 
-function onTouch() {
-  isMouseDown = !isMouseDown;
-}
-
-function onMouse() {
-  isMouseDown = !isMouseDown;
+function handleIsAccelerated() {
+  isAccelerated = !isAccelerated;
 }
 
 class Particle {
@@ -39,7 +35,7 @@ class Particle {
   }
 
   update() {
-    if (!isMouseDown) {
+    if (!isAccelerated) {
       if (this.cnt >= 101) {
         this.cnt -= 1;
       }
