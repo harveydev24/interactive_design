@@ -37,13 +37,11 @@ class Particle {
   update() {
     if (!isAccelerated) {
       if (this.cnt >= 101) {
-        console.log(this.cnt);
         this.cnt -= 1;
       }
       this.position += this.step * (this.acc * this.cnt * this.cnt);
       this.draw();
     } else {
-      console.log(this.cnt);
       if (this.cnt <= 300) {
         this.cnt += 1;
       }
