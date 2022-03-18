@@ -63,7 +63,11 @@ function init() {
 
 function animate() {
   requestAnimationFrame(animate);
-  ctx.fillStyle = `rgba(0,10,32,0.1)`;
+  if (!isAccelerated) {
+    ctx.fillStyle = `rgba(0,10,32,0.1)`;
+  } else {
+    ctx.fillStyle = `rgba(0,10,32,0.01)`;
+  }
   ctx.fillRect(0, 0, innerWidth, innerHeight);
 
   for (let i = 0; i < particleArray.length; i++) {
