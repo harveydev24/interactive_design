@@ -5,8 +5,13 @@ canvas.height = window.innerHeight;
 let particleArray = [];
 var isMouseDown = false;
 
-window.addEventListener("mousedown", onMouse);
-window.addEventListener("mouseup", onMouse);
+window.addEventListener("mousedown", onMouse, false);
+window.addEventListener("mouseup", onMouse, false);
+window.addEventListener("touchstart", onTouch, false);
+
+function onTouch() {
+  isMouseDown = !isMouseDown;
+}
 
 function onMouse() {
   isMouseDown = !isMouseDown;
