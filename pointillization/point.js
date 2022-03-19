@@ -9,6 +9,7 @@ export class Point {
   }
 
   animate(ctx, stageWidth, stageHeight) {
+    console.log(this.radius);
     ctx.beginPath();
     ctx.fillStyle = "white";
     ctx.arc(this.destinationX, this.destinationY, this.radius, 0, PI2, false);
