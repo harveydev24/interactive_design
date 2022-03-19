@@ -1,1 +1,1 @@
-![ezgif.com-gif-maker](C:/Users/%EA%B9%80%EC%A7%84%ED%99%98/Downloads/ezgif.com-gif-maker.gif)
+![ezgif.com-gif-maker](README.assets/ezgif.com-gif-maker.gif)
