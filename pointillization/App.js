@@ -11,7 +11,14 @@ class App {
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
 
-    this.point = new Point(this.stageWidth / 2, this.stageHeight / 2, 1000, 0);
+    this.point = new Point(
+      this.stageWidth / 2,
+      this.stageHeight / 2,
+      50,
+      0,
+      this.stageWidth,
+      this.stageHeight
+    );
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -26,7 +33,7 @@ class App {
 
   animate() {
     window.requestAnimationFrame(this.animate.bind(this));
-    this.point.animate(this.ctx, this.stageWidth, this.stageHeight);
+    this.point.draw(this.ctx, this.stageWidth, this.stageHeight);
   }
 }
 
