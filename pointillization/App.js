@@ -14,7 +14,17 @@ class App {
 
     this.points = [];
 
-    this.curr_img = new Img(this.ctx, this.stageWidth, this.stageHeight, 5);
+    this.pointRadius = 5;
+    this.pixelInterval = 10;
+
+    this.curr_img = new Img(
+      this.ctx,
+      this.stageWidth,
+      this.stageHeight,
+      this.canvas.width,
+      this.canvas.height,
+      this.pixelInterval
+    );
     this.curr_img.img.onload = () => {
       const dots = this.curr_img.getDotPos();
 
@@ -23,7 +33,7 @@ class App {
           new Point(
             dot.x,
             dot.y,
-            2.5,
+            this.pointRadius,
             dot.color,
             this.stageWidth,
             this.stageHeight

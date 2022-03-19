@@ -1,13 +1,24 @@
 export class Img {
-  constructor(ctx, stageWidth, stageHeight, interval) {
+  constructor(
+    ctx,
+    stageWidth,
+    stageHeight,
+    canvasWidth,
+    canvasHeight,
+    interval
+  ) {
     this.ctx = ctx;
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
+    this.canvasWidth = canvasWidth;
+    this.canvasHeight = canvasHeight;
 
     this.img = new Image();
     this.img.src = "./images/Gogh.jpeg";
-    this.imgWidth = 500;
-    this.imgHeight = 500;
+    this.imgWidth = this.img.naturalWidth * 0.75;
+    this.imgHeight = this.img.naturalHeight * 0.75;
+    // this.imgWidth = Math.min(this.stageWidth, this.stageHeight);
+    // this.imgHeight = Math.min(this.stageWidth, this.stageHeight);
     this.imgPosX = Math.floor((stageWidth - this.imgWidth) / 2);
     this.imgPosY = Math.floor((stageHeight - this.imgHeight) / 2);
     this.interval = interval;
@@ -23,36 +34,30 @@ export class Img {
     );
 
     const dotData = this.ctx.getImageData(
-      this.imgPosX,
-      this.imgPosY,
-      3 * this.imgWidth,
-      3 * this.imgHeight
+      0,
+      0,
+      this.stageWidth,
+      this.stageHeight
     );
 
     const dots = [];
 
-    for (
-      let x = this.imgPosX;
-      x < this.imgPosX + this.imgWidth;
-      x += this.interval
-    ) {
-      for (
-        let y = this.imgPosY;
-        y < this.imgPosY + this.imgHeight;
-        y += this.interval
-      ) {
-        const idx = (y * this.imgWidth * 3 + x) * 4;
+    for (let x = 0; x < this.canvasWidth; x += this.interval) {
+      for (let y = 0; y < this.canvasHeight; y += this.interval) {
+        const idx = (y * this.canvasWidth + x) * 4;
 
         const r = dotData.data[idx];
         const g = dotData.data[idx + 1];
         const b = dotData.data[idx + 2];
 
-        const color = `rgba(${r},${g},${b},1)`;
-        dots.push({ x: x, y: y, color: color });
+        if (!((r === 0) & (g === 0) & (b === 0))) {
+          const color = `rgba(${r},${g},${b},1)`;
+          dots.push({ x: x, y: y, color: color });
+        }
       }
     }
 
-    this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+    // this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
     return dots;
   }
