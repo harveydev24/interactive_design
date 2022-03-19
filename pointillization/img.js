@@ -55,7 +55,7 @@ export class Img {
       }
     }
 
-    // this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+    this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
     return dots;
   }
