@@ -36,6 +36,7 @@ class App {
     this.isPaint = false;
     window.addEventListener("mousedown", this.handleIsPaint.bind(this), false);
     window.addEventListener("mouseup", this.handleIsPaint.bind(this), false);
+    window.addEventListener("touchstart", this.handleIsPaint.bind(this), false);
   }
 
   handleIsPaint() {

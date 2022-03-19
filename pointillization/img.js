@@ -5,7 +5,7 @@ export class Img {
     this.stageHeight = stageHeight;
 
     this.img = new Image();
-    this.img.src = "./goh.jpeg";
+    this.img.src = "./images/Gogh.jpeg";
     this.imgWidth = 500;
     this.imgHeight = 500;
     this.imgPosX = Math.floor((stageWidth - this.imgWidth) / 2);
@@ -25,8 +25,8 @@ export class Img {
     const dotData = this.ctx.getImageData(
       this.imgPosX,
       this.imgPosY,
-      1500,
-      1500
+      3 * this.imgWidth,
+      3 * this.imgHeight
     );
 
     const dots = [];
@@ -53,14 +53,6 @@ export class Img {
     }
 
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-
-    // dots.forEach((dot) => {
-    //   this.ctx.beginPath();
-    //   this.ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2, false);
-    //   this.ctx.fillStyle = dot.color;
-    //   this.ctx.fill();
-    //   this.ctx.closePath();
-    // });
 
     return dots;
   }
