@@ -42,9 +42,9 @@ export class Img {
 
     const dots = [];
 
-    for (let x = 0; x < this.canvasWidth; x += this.interval) {
-      for (let y = 0; y < this.canvasHeight; y += this.interval) {
-        const idx = (y * this.canvasWidth + x) * 4;
+    for (let x = 0; x < this.stageWidth; x += this.interval) {
+      for (let y = 0; y < this.stageHeight; y += this.interval) {
+        const idx = (y * this.stageWidth + x) * 4;
 
         const r = dotData.data[idx];
         const g = dotData.data[idx + 1];
