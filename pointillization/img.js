@@ -15,8 +15,10 @@ export class Img {
 
     this.img = new Image();
     this.img.src = "./images/Gogh.jpeg";
-    this.imgWidth = 700;
-    this.imgHeight = 700;
+    // this.imgWidth = 700;
+    // this.imgHeight = 700;
+    this.imgWidth = Math.min(this.stageWidth, this.stageHeight);
+    this.imgHeight = Math.min(this.stageWidth, this.stageHeight);
     this.imgPosX = Math.floor((stageWidth - this.imgWidth) / 2);
     this.imgPosY = Math.floor((stageHeight - this.imgHeight) / 2);
     this.interval = interval;
