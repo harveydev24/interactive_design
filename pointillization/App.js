@@ -15,7 +15,7 @@ class App {
     this.points = [];
 
     this.pointRadius = 5;
-    this.pixelInterval = 10;
+    this.pixelInterval = 10 * this.pixelRatio;
 
     this.curr_img = new Img(
       this.ctx,
@@ -23,7 +23,8 @@ class App {
       this.stageHeight,
       this.canvas.width,
       this.canvas.height,
-      this.pixelInterval
+      this.pixelInterval,
+      this.pixelRatio
     );
     this.curr_img.img.onload = () => {
       const dots = this.curr_img.getDotPos();
@@ -58,6 +59,7 @@ class App {
     this.stageHeight = document.body.clientHeight;
     this.canvas.width = this.stageWidth * this.pixelRatio;
     this.canvas.height = this.stageHeight * this.pixelRatio;
+    console.log(this.pixelRatio);
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
     this.curr_img = new Img(this.ctx, this.stageWidth, this.stageHeight);

@@ -5,22 +5,22 @@ export class Img {
     stageHeight,
     canvasWidth,
     canvasHeight,
-    interval
+    interval,
+    pixelRatio
   ) {
     this.ctx = ctx;
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-
+    this.pixelRatio = pixelRatio;
     this.img = new Image();
     this.img.src = "./images/Gogh.jpeg";
-    // this.imgWidth = 700;
-    // this.imgHeight = 700;
-    this.imgWidth = Math.min(this.stageWidth, this.stageHeight);
-    this.imgHeight = Math.min(this.stageWidth, this.stageHeight);
-    this.imgPosX = Math.floor((stageWidth - this.imgWidth) / 2);
-    this.imgPosY = Math.floor((stageHeight - this.imgHeight) / 2);
+
+    this.imgWidth = Math.min(this.stageWidth, this.stageHeight) * 0.8;
+    this.imgHeight = Math.min(this.stageWidth, this.stageHeight) * 0.8;
+    this.imgPosX = Math.floor((this.stageWidth - this.imgWidth) / 2);
+    this.imgPosY = Math.floor((this.stageHeight - this.imgHeight) / 2);
     this.interval = interval;
   }
 
@@ -36,15 +36,19 @@ export class Img {
     const dotData = this.ctx.getImageData(
       0,
       0,
-      this.stageWidth,
-      this.stageHeight
+      this.stageWidth * this.pixelRatio,
+      this.stageHeight * this.pixelRatio
     );
 
     const dots = [];
 
-    for (let x = 0; x < this.stageWidth; x += this.interval) {
-      for (let y = 0; y < this.stageHeight; y += this.interval) {
-        const idx = (y * this.stageWidth + x) * 4;
+    for (let x = 0; x < this.stageWidth * this.pixelRatio; x += this.interval) {
+      for (
+        let y = 0;
+        y < this.stageHeight * this.pixelRatio;
+        y += this.interval
+      ) {
+        const idx = (y * dotData.width + x) * 4;
 
         const r = dotData.data[idx];
         const g = dotData.data[idx + 1];
@@ -52,7 +56,11 @@ export class Img {
 
         if (!((r === 0) & (g === 0) & (b === 0))) {
           const color = `rgba(${r},${g},${b},1)`;
-          dots.push({ x: x, y: y, color: color });
+          dots.push({
+            x: x / this.pixelRatio,
+            y: y / this.pixelRatio,
+            color: color,
+          });
         }
       }
     }
@@ -60,12 +68,5 @@ export class Img {
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
     return dots;
-  }
-
-  decToHex(dec) {
-    if (dec) {
-      const hex = dec.toString(16);
-      return hex.length === 1 ? `0${hex}` : hex;
-    }
   }
 }
