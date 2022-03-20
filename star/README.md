@@ -1,4 +1,4 @@
-[ezgif.com-gif-maker (2)](README.assets/ezgif.com-gif-maker (2).gif)
+![ezgif.com-gif-maker (2)](README.assets/ezgif.com-gif-maker (2).gif)
 
 [Go to demo](https://harveydev24.github.io/interactive_design/star/)
 
