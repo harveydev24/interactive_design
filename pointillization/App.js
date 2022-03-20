@@ -26,6 +26,7 @@ class App {
       this.pixelInterval,
       this.pixelRatio
     );
+
     this.curr_img.img.onload = () => {
       const dots = this.curr_img.getDotPos();
 

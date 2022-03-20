@@ -15,7 +15,7 @@ export class Img {
     this.canvasHeight = canvasHeight;
     this.pixelRatio = pixelRatio;
     this.img = new Image();
-    this.img.src = "./images/Gogh.jpeg";
+    this.img.src = "./images/Dali.jpeg";
 
     this.imgWidth = Math.min(this.stageWidth, this.stageHeight) * 0.8;
     this.imgHeight = Math.min(this.stageWidth, this.stageHeight) * 0.8;
