@@ -1,4 +1,4 @@
-![ezgif.com-gif-maker (2)](https://media.vlpt.us/images/harveydev24/post/7bbcb4a3-754f-44ab-91fd-40c267d42326/ezgif.com-gif-maker%20(1).gif)
+![ezgif.com-gif-maker (2)](./README.assets/ezgif.com-gif-maker (2).gif)
 
 [Go to demo](https://harveydev24.github.io/interactive_design/star/)
 
