@@ -75,11 +75,6 @@ class App {
     this.canvas.height = this.stageHeight * this.pixelRatio;
     console.log(this.pixelRatio);
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
-
-    this.curr_img = new Img(this.ctx, this.stageWidth, this.stageHeight);
-    this.curr_img.img.onload = () => {
-      this.curr_img.getDotPos();
-    };
   }
 
   animate() {

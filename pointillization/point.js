@@ -22,7 +22,7 @@ export class Point {
     this.speedToDestinationY = 0;
     this.cntX = 1;
     this.cntY = 1;
-    this.acc = 0.00001;
+    this.acc = 0.000001;
 
     this.cnt = 500;
 
