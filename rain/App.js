@@ -1,10 +1,12 @@
 import { Particle } from "./particle.js";
+import { Umbrella } from "./umbrella.js";
 
 class App {
   constructor() {
     this.canvas = document.createElement("canvas");
     this.ctx = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
+    document.body.style.cursor = "none";
 
     this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
 
@@ -12,15 +14,22 @@ class App {
     this.resize();
 
     this.particles = [];
-    this.totalParticles = 1200;
+    this.totalParticles = 1000;
+    this.full = false;
 
-    for (let i = 0; i < this.totalParticles; i++) {
-      const particle = new Particle(this.stageWidth, this.stageHeight);
+    this.mouseX = this.stageWidth / 2;
+    this.mouseY = this.stageHeight / 2;
+    this.umbrellaRadius = 100;
+    this.umbrella = new Umbrella(this.umbrellaRadius);
 
-      this.particles.push(particle);
-    }
+    document.addEventListener("mousemove", this.handleMousemove.bind(this));
 
     window.requestAnimationFrame(this.animate.bind(this));
+  }
+
+  handleMousemove(e) {
+    this.mouseX = e.clientX;
+    this.mouseY = e.clientY;
   }
 
   resize() {
@@ -32,11 +41,24 @@ class App {
   }
 
   animate() {
+    if (!this.full) {
+      for (let i = 0; i < 3; i++) {
+        const particle = new Particle(this.stageWidth, this.stageHeight);
+
+        this.particles.push(particle);
+      }
+
+      if (this.particles.length >= this.totalParticles) {
+        this.full = true;
+      }
+    }
+
     window.requestAnimationFrame(this.animate.bind(this));
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-    for (let i = 0; i < this.totalParticles; i++) {
-      this.particles[i].draw(this.ctx);
-    }
+    this.umbrella.draw(this.ctx, this.mouseX, this.mouseY);
+    this.particles.forEach((particle) => {
+      particle.draw(this.ctx, this.mouseX, this.mouseY, this.umbrellaRadius);
+    });
   }
 }
 

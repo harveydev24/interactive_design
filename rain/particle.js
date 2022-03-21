@@ -5,11 +5,10 @@ export class Particle {
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
     this.x = Math.random() * this.stageWidth;
-    this.y = Math.random() * this.stageHeight;
+    this.y = 0;
     this.color = `rgba(${196},${211},${223},1)`;
-    this.speed = 3 + Math.random() * 4;
+    this.speed = 5 + Math.random() * 4;
     this.particleWidth = 1 + Math.ceil(Math.random() * 30) / 10;
-    console.log(this.speed);
     this.collision = false;
     this.collisionCnt = 0;
 
@@ -19,10 +18,16 @@ export class Particle {
 
   resize() {}
 
-  update() {
+  update(mouseX, mouseY, umbrellaRadius) {
     this.y += this.speed;
+
     if (!this.collision) {
-      if (this.y >= this.stageHeight) {
+      if (
+        (this.y >= this.stageHeight) |
+        ((this.y <= mouseY) &
+          (Math.sqrt((this.x - mouseX) ** 2 + (this.y - mouseY) ** 2) <=
+            umbrellaRadius))
+      ) {
         this.collision = true;
       }
     } else {
@@ -39,8 +44,8 @@ export class Particle {
     }
   }
 
-  draw(ctx) {
-    this.update();
+  draw(ctx, mouseX, mouseY, umbrellaRadius) {
+    this.update(mouseX, mouseY, umbrellaRadius);
     if (!this.collision) {
       ctx.beginPath();
       ctx.fillStyle = "rgba(196, 211, 255, 1)";
