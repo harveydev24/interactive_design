@@ -12,14 +12,10 @@ class App {
     this.resize();
 
     this.particles = [];
-    this.totalParticles = 1000;
+    this.totalParticles = 1200;
 
     for (let i = 0; i < this.totalParticles; i++) {
-      const particle = new Particle(
-        this.ctx,
-        this.stageWidth,
-        this.stageHeight
-      );
+      const particle = new Particle(this.stageWidth, this.stageHeight);
 
       this.particles.push(particle);
     }
@@ -39,7 +35,7 @@ class App {
     window.requestAnimationFrame(this.animate.bind(this));
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
     for (let i = 0; i < this.totalParticles; i++) {
-      this.particles[i].draw();
+      this.particles[i].draw(this.ctx);
     }
   }
 }

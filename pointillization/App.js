@@ -10,9 +10,8 @@ class App {
     this.pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
 
     window.addEventListener("resize", this.resize.bind(this), false);
-    this.resize();
-
     this.points = [];
+    this.resize();
 
     this.pointRadius = 5;
     this.pixelInterval = 10 * this.pixelRatio;
@@ -73,7 +72,6 @@ class App {
     this.stageHeight = document.body.clientHeight;
     this.canvas.width = this.stageWidth * this.pixelRatio;
     this.canvas.height = this.stageHeight * this.pixelRatio;
-    console.log(this.pixelRatio);
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
   }
 
